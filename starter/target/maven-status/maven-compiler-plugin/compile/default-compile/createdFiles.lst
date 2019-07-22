@@ -1,0 +1,5 @@
+edu\educacionit\model\Chofer.class
+edu\educacionit\service\FiltroChoferes.class
+edu\educacionit\App.class
+edu\educacionit\repository\Choferes.class
+edu\educacionit\AppConfig.class
