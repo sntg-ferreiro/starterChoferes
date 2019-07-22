@@ -2,6 +2,8 @@ package edu.educacionit.model;
 
 import java.util.UUID;
 
+import com.google.gson.Gson;
+
 public class Chofer {
 	private UUID id;
 	private String nombre;
@@ -41,6 +43,11 @@ public class Chofer {
 	
 	public Chofer() {
 		id = UUID.randomUUID();
+	}
+	
+	public String toString() {
+		return new Gson().toJson(this);
+		
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
+import edu.educacionit.model.Chofer;
 import edu.educacionit.repository.Choferes;
 import edu.educacionit.service.FiltroChoferes;
 
@@ -42,6 +43,11 @@ public class App
         filtro.getChoferesQueLesGustaSuTrabajoConAccidentes();
         filtro.getChoferesQueNoLesGustaSuTrabajoConAccidentes();
         filtro.getChoferesQueNoLesGustaSuTrabajoSinAccidentes();
+        
+        System.out.println("Prueba de predicado");
+        for(Chofer c : filtro.getChoferes(z -> z.isLesGustaSuTrabajo() && z.getCantAccidentes()>0)) {
+        	System.out.println(c);
+        }
 //       String acc = System.getProperty("accidentes");
 //       String tra = System.getProperty("gustaTrabajo");
 //           		

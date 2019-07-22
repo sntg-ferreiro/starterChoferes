@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.educacionit.functionalInterfaces.Predicado;
+
 import edu.educacionit.model.Chofer;
 import edu.educacionit.repository.Choferes;
 
@@ -19,6 +21,16 @@ public class FiltroChoferes {
 	@Autowired
 	public FiltroChoferes(Choferes choferes) {
 		this.choferes = choferes;
+	}
+	
+	public List<Chofer> getChoferes(Predicado pred){
+		List<Chofer> choferesdevolver = new ArrayList<>();
+		for (Chofer cho : choferes.getChoferes()) {
+			if (pred.filtrar(cho)) {
+				choferesdevolver.add(cho);
+			}
+		}
+			return choferesdevolver; 	
 	}
 
 	public List<Chofer> getChoferesQueLesGustaSuTrabajoConAccidentes() {
@@ -36,7 +48,7 @@ public class FiltroChoferes {
 		return choferesdevolver;
 	}
 
-	public List<Choferes> getChoferesQueNoLesGustaSuTrabajoConAccidentes() {
+	public List<Chofer> getChoferesQueNoLesGustaSuTrabajoConAccidentes() {
 		List<Chofer> choferesdevolver = new ArrayList<>();
 		for (Chofer cho : choferes.getChoferes()) {
 			if (!cho.isLesGustaSuTrabajo()) {
@@ -48,10 +60,10 @@ public class FiltroChoferes {
 		System.out.println("------------------------------------------------");
 		System.out.println("Choferes que no les gusta su trabajo y tuvieron accidentes:");
 		mostrarChoferes(choferesdevolver);
-		return null;
+		return choferesdevolver;
 	}
 
-	public List<Choferes> getChoferesQueLesGustaSuTrabajoSinAccidentes() {
+	public List<Chofer> getChoferesQueLesGustaSuTrabajoSinAccidentes() {
 		List<Chofer> choferesdevolver = new ArrayList<>();
 		for (Chofer cho : choferes.getChoferes()) {
 			if (cho.isLesGustaSuTrabajo()) {
@@ -63,10 +75,10 @@ public class FiltroChoferes {
 		System.out.println("------------------------------------------------");
 		System.out.println("Choferes que les gusta su trabajo y no tuvieron accidentes:");
 		mostrarChoferes(choferesdevolver);
-		return null;
+		return choferesdevolver;
 	}
 
-	public List<Choferes> getChoferesQueNoLesGustaSuTrabajoSinAccidentes() {
+	public List<Chofer> getChoferesQueNoLesGustaSuTrabajoSinAccidentes() {
 
 		List<Chofer> choferesdevolver = new ArrayList<>();
 		for (Chofer cho : choferes.getChoferes()) {
@@ -78,8 +90,11 @@ public class FiltroChoferes {
 		}
 		System.out.println("------------------------------------------------");
 		System.out.println("Choferes que no les gusta su trabajo y no tuvieron accidentes:");
-		mostrarChoferes(choferesdevolver);
-		return null;
+//		mostrarChoferes(choferesdevolver);
+		for (Chofer cho : choferesdevolver) {
+		System.out.println(cho);
+		}
+		return choferesdevolver;
 	}
 
 	public void mostrarChoferes(List<Chofer> choferes) {
